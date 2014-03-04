@@ -26,4 +26,14 @@ Use the following command to run MFinder:
 In this case 100 randomized networks will be saved in 100 output files. The networks will be randomized using the ordered switching algorithm (-rdag flag). Notice that for this to work, the original directed acyclic network HAS to have vertex IDs corresponding to a topological ordering, such that all edges (i,j) have the property that i > j. See the above link for more information on running MFinder and the different flags and options. 
 
 ***********************
+### findSwappableEdges.R
+
+A function that counts or lists all edge pairs that are allowed to be swapped by the ordered switching algorithm AND that result in a different network. I.e. all pairs of edges (x,y) and (u,v) with the following three properties:
+* x!=u and y!=v
+* x > v and u > y 
+* the current network does not have the edges (x,v) and (u,y)
+
+***********************
+### createStateGraph.R
+
 
