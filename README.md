@@ -13,7 +13,7 @@ This file contains an implementation of the ordered switching model as discussed
 This implementation is quite slow, use the adjusted version of MFinder as described below for large networks.
 
 ***********************
-### MFinder2.1Adj
+### mfinder
 
 Adjusted version of the MFinder software: http://www.weizmann.ac.il/mcb/UriAlon/download/network-motif-software
 
