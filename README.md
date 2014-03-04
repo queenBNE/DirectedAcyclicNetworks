@@ -1,7 +1,6 @@
 DirectedAcyclicNetworks
 =======================
 
-***********************
 ### karrerNewman.R
 
 This file contains an implementation of the first random graph model discussed in: "Random graph models for directed acyclic networks, Phys. Rev. E 80, Brian Karrer and M. E. J. Newman (2009)". 
@@ -26,5 +25,5 @@ Use the following command to run MFinder:
 
 In this case 100 randomized networks will be saved in 100 output files. The networks will be randomized using the ordered switching algorithm (-rdag flag). Notice that for this to work, the original directed acyclic network HAS to have vertex IDs corresponding to a topological ordering, such that all edges (i,j) have the property that i > j. See the above link for more information on running MFinder and the different flags and options. 
 
-
+***********************
 
