@@ -30,7 +30,7 @@
 karrerNewmanEdgelist <- function(d_in, d_out){
    
   # Empty matrix to save edges and index
-  edgelist <- matrix(nrow=length(d_in), ncol=2)
+  edgelist <- matrix(nrow=sum(d_in), ncol=2)
   j <- 1
   
   # A list of all vertices and a list of "in-stubs"
