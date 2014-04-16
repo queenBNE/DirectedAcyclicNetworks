@@ -33,25 +33,21 @@ karrerNewmanEdgelist <- function(d_in, d_out){
   edgelist <- matrix(nrow=sum(d_in), ncol=2)
   j <- 1
   
-  # A list of all vertices and a list of "in-stubs"
-  # This list keeps track of the number of in-stubs at each vertex at each stage 
-  # of the algorithm. Initialy no vertices are present, so there are no in-stubs
-  verts <- (1:length(d_in))
-  stubs <- rep(0, length(d_in))
+  # The number of 'in stubs' at each vertex (initially 0)
+  in_stub_count <- rep(0, length(d_out))
   
-  # For each vertex 
+  # For each vertex - starting with the 'oldest' vertex
   for(v in 1:length(d_in)){
     
     # If it should have outgoing edges
     if(d_out[v] > 0){
-      # Obtain the vertices with in-stubs
-      verts.sample <- verts[stubs > 0]
-      stubs.sample <- stubs[stubs > 0]
+      # Create a list of vertices with in-stubs
+      stubs <- c(rep(1:length(d_out), in_stub_count))
       # And pick the in-stubs to connect to
-      if(length(verts.sample) == 1){
-        out_neighbours <- rep(verts.sample, d_out[v])
+      if(length(stubs) == 1){
+        out_neighbours <- stubs
       }else{
-        out_neighbours <- sample(verts.sample, d_out[v], prob=stubs.sample)
+        out_neighbours <- sample(stubs, d_out[v], replace=F)
       }
       
       # Add the chosen edges to the edgelist
@@ -60,13 +56,13 @@ karrerNewmanEdgelist <- function(d_in, d_out){
         j <- j + 1
       }
       
-      # Remove the chosen in-stubs from the stubs list
+      # Remove the chosen in-stubs from the in-stub counts
       nbrs <- table(out_neighbours)
       rownames <- row.names(nbrs)
-      stubs[as.numeric(rownames)] <- stubs[as.numeric(rownames)] - nbrs[rownames]
+      in_stub_count[as.numeric(rownames)] <- in_stub_count[as.numeric(rownames)] - nbrs[rownames]
     }
     # Add in-stubs for the current vertex
-    stubs[v] <- d_in[v]
+    in_stub_count[v] <- d_in[v]
   }
   # Create the
   return(edgelist)
